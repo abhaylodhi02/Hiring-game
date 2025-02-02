@@ -28,7 +28,6 @@ def go_back():
         st.session_state.page = 'job_selection'
     elif st.session_state.page == 'dashboard':
         st.session_state.page = 'task_overview'
-    st.experimental_rerun()
 
 # 1️⃣ Landing Page
 def show_landing_page():
@@ -44,7 +43,6 @@ def show_landing_page():
 
     if st.button("Start", key='start', help='Click to Proceed', use_container_width=True):
         st.session_state.page = 'login'
-        st.experimental_rerun()
 
 # 2️⃣ Login Page (with dynamic name display while typing)
 def show_login_page():
@@ -73,7 +71,6 @@ def show_login_page():
             st.session_state.page = 'job_selection'
             st.session_state.name = name  # Storing name in session state
             st.session_state.unique_id = unique_id  # Storing unique_id
-            st.experimental_rerun()
 
     # Move back button to top-left
     if st.button("Back", on_click=go_back):  # Add back button
@@ -94,7 +91,6 @@ def show_job_selection_page():
 
     if st.button("Proceed"):
         st.session_state.page = 'task_overview'
-        st.experimental_rerun()
 
     if st.button("Back", on_click=go_back):  # Add back button
         go_back()
@@ -111,7 +107,6 @@ def show_task_overview_page():
     
     # Frame for candidate information
     candidate_info = f"Name: {st.session_state.name} | Unique ID: {st.session_state.unique_id}"
-    #st.markdown(f"### Candidate Info\n{candidate_info}")
     
     # Current Day Box
     st.sidebar.markdown("### Candidate Info:\n" + candidate_info)
@@ -129,20 +124,17 @@ def show_task_overview_page():
         for i in range(1, 7):
             if st.button(f"Day {i}"):
                 st.session_state.page = 'dashboard'
-                st.experimental_rerun()
 
     with col2:
         st.header("Day 7 - Day 9")
         for i in range(7, 10):
             if st.button(f"Day {i}"):
                 st.session_state.page = 'dashboard'
-                st.experimental_rerun()
 
     with col3:
         st.header("Day 10")
         if st.button("Day 10"):
             st.session_state.page = 'dashboard'
-            st.experimental_rerun()
 
     # Move back button to top-left
     if st.button("Back", on_click=go_back):  # Add back button
@@ -174,7 +166,6 @@ def show_dashboard_page():
         checked = st.checkbox(f"Done 1", key="task_1")
         if checked and not st.session_state.task_status[f"task_1"]:
             st.session_state.task_status[f"task_1"] = True
-            st.experimental_rerun()
 
     col1, col2 = st.columns([3, 1])
     with col1:
@@ -183,7 +174,6 @@ def show_dashboard_page():
         checked = st.checkbox(f"Done 2", key="task_2")
         if checked and not st.session_state.task_status[f"task_2"]:
             st.session_state.task_status[f"task_2"] = True
-            st.experimental_rerun()
 
     col1, col2 = st.columns([3, 1])
     with col1:
@@ -192,7 +182,6 @@ def show_dashboard_page():
         checked = st.checkbox(f"Done 3", key="task_3")
         if checked and not st.session_state.task_status[f"task_3"]:
             st.session_state.task_status[f"task_3"] = True
-            st.experimental_rerun()
 
     # Move back button to top-left
     if st.button("Back", on_click=go_back):  # Add back button
